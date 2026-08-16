@@ -1,0 +1,3 @@
+import User from '../models/User.js';
+export const getProfile = async (req, res, next) => { try { const user = await User.findById(req.userId); if (!user) return res.status(404).json({ message: 'User not found.' }); res.json({ id: user._id, name: user.name, email: user.email, createdAt: user.createdAt }); } catch (err) { next(err); } };
+export const updateProfile = async (req, res, next) => { try { const name = req.body.name?.trim(); if (!name || name.length < 2) return res.status(400).json({ message: 'Name must contain at least 2 characters.' }); const user = await User.findByIdAndUpdate(req.userId, { name }, { new: true, runValidators: true }); res.json({ id: user._id, name: user.name, email: user.email, createdAt: user.createdAt }); } catch (err) { next(err); } };

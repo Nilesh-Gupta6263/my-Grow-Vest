@@ -1,0 +1,1 @@
+import { Router } from 'express'; import { getStocks, getStock } from '../controllers/stockController.js'; const router = Router(); router.get('/', getStocks); router.get('/:symbol', getStock); export default router;

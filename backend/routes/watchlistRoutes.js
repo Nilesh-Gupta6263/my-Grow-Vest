@@ -1,0 +1,1 @@
+import { Router } from 'express'; import { getWatchlist, addWatchlist, removeWatchlist } from '../controllers/watchlistController.js'; import { protect } from '../middleware/auth.js'; const router = Router(); router.use(protect); router.get('/', getWatchlist); router.post('/', addWatchlist); router.delete('/:symbol', removeWatchlist); export default router;
